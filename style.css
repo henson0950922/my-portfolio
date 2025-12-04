@@ -84,7 +84,7 @@ section, header, footer {
 }
 
 .project-card {
-    background: #eee;
+    background: #fff;
     padding: 20px;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
