@@ -114,4 +114,30 @@ section, header, footer {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+
+/* === A/B Test: Version A (進度條) === */
+.skills-container {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.skill-item {
+    display: block;
+    background: #f0f0f0;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.skill-item::after {
+    content: '';
+    display: block;
+    background: #4CAF50; /* 綠色進度條 */
+    height: 4px;
+    width: 80%; /* 假裝大家都 80% */
+    margin-top: 8px;
+    border-radius: 2px;
+}
 }
