@@ -7,6 +7,84 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="decor-bg" aria-hidden="true">
+        <!-- 霓虹程式設計風格背景：漸層、符號、大括號、箭頭與微網格 -->
+        <svg class="decor-svg" preserveAspectRatio="none" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0%" stop-color="#00f0ff"/>
+                    <stop offset="40%" stop-color="#7dd3fc"/>
+                    <stop offset="70%" stop-color="#a78bfa"/>
+                    <stop offset="100%" stop-color="#ff3ecb"/>
+                </linearGradient>
+                <linearGradient id="gridGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06"/>
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+                </linearGradient>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="b" />
+                    <feMerge>
+                        <feMergeNode in="b" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- 微弱網格層（覆蓋整個畫面） -->
+            <g class="grid" stroke="url(#gridGrad)" stroke-width="1" fill="none" opacity="0.18">
+                <!-- 水平線 -->
+                <path d="M0 40 H1200" />
+                <path d="M0 80 H1200" />
+                <path d="M0 120 H1200" />
+                <path d="M0 160 H1200" />
+                <path d="M0 200 H1200" />
+                <path d="M0 240 H1200" />
+                <path d="M0 280 H1200" />
+                <path d="M0 320 H1200" />
+                <path d="M0 360 H1200" />
+                <path d="M0 400 H1200" />
+                <!-- 垂直線（稀疏） -->
+                <path d="M80 0 V800" />
+                <path d="M200 0 V800" />
+                <path d="M360 0 V800" />
+                <path d="M520 0 V800" />
+                <path d="M760 0 V800" />
+                <path d="M920 0 V800" />
+            </g>
+
+            <!-- 程式碼行與片段（使用霓虹漸層） -->
+            <g class="code-lines" fill="none" stroke="url(#g1)" stroke-opacity="0.95" stroke-width="1" filter="url(#glow)">
+                <path class="line line-1" d="M30 60 H1170" />
+                <path class="line line-2" d="M30 140 H1170" />
+                <path class="line line-3" d="M30 220 H1170" />
+                <path class="line line-4" d="M30 300 H1170" />
+                <path class="line line-5" d="M30 380 H1170" />
+            </g>
+
+            <!-- 程式片段文字，大小多樣化以增加層次 -->
+            <g class="code-snippets" fill="none" filter="url(#glow)">
+                <text class="snippet s1 symbol" x="40" y="55" font-family="monospace" font-size="14" fill="url(#g1)">const x = 42;</text>
+                <text class="snippet s2 symbol" x="220" y="135" font-family="monospace" font-size="13" fill="url(#g1)">function init() {}</text>
+                <text class="snippet s3 symbol" x="60" y="215" font-family="monospace" font-size="12" fill="url(#g1)">if (ready) { start(); }</text>
+                <text class="snippet s4 symbol" x="40" y="295" font-family="monospace" font-size="16" fill="url(#g1)">&lt;div class="app"&gt;</text>
+                <text class="snippet s5 symbol" x="800" y="375" font-family="monospace" font-size="14" fill="url(#g1)">0b1010 1011 1100</text>
+            </g>
+
+            <!-- 大括號、箭頭等符號作為視覺焦點 -->
+            <g class="symbols" fill="url(#g1)" font-family="monospace" font-weight="700" filter="url(#glow)">
+                <text class="brace b1" x="980" y="140" font-size="64">{ }</text>
+                <text class="arrow a1" x="920" y="320" font-size="36">=&gt;</text>
+                <text class="arrow a2" x="1020" y="220" font-size="28">&lt;-</text>
+            </g>
+
+            <!-- 浮動圓點，增加霓虹感 -->
+            <g class="dots" fill="url(#g1)" filter="url(#glow)">
+                <circle class="dot d1" cx="1050" cy="80" r="4" />
+                <circle class="dot d2" cx="1080" cy="200" r="3" />
+                <circle class="dot d3" cx="1100" cy="320" r="4.5" />
+            </g>
+        </svg>
+    </div>
     <nav>
         <ul>
             <li><a href="#about">關於我</a></li>
@@ -19,8 +97,12 @@
 
     <header id="about">
         <div class="profile-container">
-            <div class="avatar" role="img" aria-label="個人頭像" data-drive-src="https://drive.usercontent.google.com/download?id=1WoYQvydXXujFK0pLObxdW949qakFVXpg&export=view" data-local-src="assets/avatar.jpg"></div>
-            <h1>(蕭博元)</h1>
+              <div class="avatar-wrapper">
+                 <div class="avatar" role="img" aria-label="個人頭像"
+                     data-drive-src="assets/virtual-avatar.svg"
+                     data-local-src="assets/avatar.jpg"></div>
+              </div>
+            <h1>蕭博元</h1>
             <p>愛吃鬼 | 學生 | 愛睡覺</p>
             <div class="profile-contact">
                 <a href="mailto:henson0950922@gmail.com">
@@ -50,6 +132,10 @@
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
                     <div class="progress-fill"></div>
                 </div>
+                <button class="toggle-details" aria-expanded="false" aria-controls="skill-1-details">閱讀更多</button>
+                <div id="skill-1-details" class="skill-details" role="region" aria-hidden="true">
+                    <p>開始變得外向主動和他人建交，待人真誠和諧，處處替人著想。</p>
+                </div>
             </div>
 
             <div class="skill" data-percent="70">
@@ -59,6 +145,10 @@
                 </div>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
                     <div class="progress-fill"></div>
+                </div>
+                <button class="toggle-details" aria-expanded="false" aria-controls="skill-2-details">閱讀更多</button>
+                <div id="skill-2-details" class="skill-details" role="region" aria-hidden="true">
+                    <p>從幼稚園就開始接觸英文，國小時開始考取全民英檢，高中時開始準備多益，目前擁有英檢中級及多益 750 分證照。</p>
                 </div>
             </div>
 
@@ -70,6 +160,10 @@
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90">
                     <div class="progress-fill"></div>
                 </div>
+                <button class="toggle-details" aria-expanded="false" aria-controls="skill-3-details">閱讀更多</button>
+                <div id="skill-3-details" class="skill-details" role="region" aria-hidden="true">
+                    <p>因為很愛吃美食且食量隨年紀急速變大，可以吃超過 40 盤壽司與 40 幾盤肉片。</p>
+                </div>
             </div>
 
             <div class="skill" data-percent="95">
@@ -79,6 +173,10 @@
                 </div>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="95">
                     <div class="progress-fill"></div>
+                </div>
+                <button class="toggle-details" aria-expanded="false" aria-controls="skill-4-details">閱讀更多</button>
+                <div id="skill-4-details" class="skill-details" role="region" aria-hidden="true">
+                    <p>冬天時可以一次睡超過 24 小時。</p>
                 </div>
             </div>
         </div>
@@ -128,6 +226,24 @@
                 setBackground(localSrc);
             }
         });
+
+        // 綁定技能區的「閱讀更多」按鈕展開 / 收合
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggles = document.querySelectorAll('.toggle-details');
+            toggles.forEach(btn => {
+                const panelId = btn.getAttribute('aria-controls');
+                const panel = document.getElementById(panelId);
+                btn.addEventListener('click', () => {
+                    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', String(!isExpanded));
+                    if (panel) {
+                        panel.classList.toggle('open', !isExpanded);
+                        panel.setAttribute('aria-hidden', String(isExpanded));
+                    }
+                    btn.textContent = isExpanded ? '閱讀更多' : '收合';
+                });
+            });
+        });
     </script>
 
     <section id="experience">
@@ -136,17 +252,17 @@
             <div class="timeline-item">
                 <span class="date">2019 - 2022</span>
                 <h3>國中時期</h3>
-                <p>上課都在睡覺，並常常跟老師唱反調。</p>
+                <p>整堂課從頭到尾都在昏睡，根本沒把老師放在眼裡，最扯的是偶爾醒來，竟然是為了要跟老師頂嘴，故意在那邊唱反調。</p>
             </div>
             <div class="timeline-item">
                 <span class="date">2022 - 2025</span>
                 <h3>高中時期</h3>
-                <p>開始注重作業與運動，參加很多運動比賽並逐漸認真上課。</p>
+                <p>變得超上進，不只開始重視作業，還花很多心思在運動跟比賽上，最棒的是上課態度也變好了，終於開始認真聽講。</p>
             </div>
             <div class="timeline-item">
                 <span class="date">2025 - 現在</span>
                 <h3>進入大學</h3>
-                <p>把握社交機會認識更多朋友，並開始思考未來要做甚麼。</p>
+                <p>現在變得很活躍，只要有社交場合就會把握機會去認識新朋友，而且也開始懂事了，會認真靜下心來思考，未來的人生方向到底該怎麼走。。</p>
             </div>
         </div>
     </section>
@@ -161,7 +277,13 @@
                 <div class="project-content">
                     <h3>終極密碼遊戲</h3>
                     <p>自己學習python開發</p>
-                    <p>暑假參加程式設計先修，並學會如何製作簡單遊戲https://drive.google.com/file/d/1mIMO-Ib5RZC7H0BBdBwqZaEe7hJ7HECS/view?usp=drive_link</p>
+                    <p>暑假參加程式設計先修，並學會如何製作簡單遊戲。</p>
+                    <p>作品連結：
+                        <a class="link-button" href="https://drive.usercontent.google.com/download?id=1mIMO-Ib5RZC7H0BBdBwqZaEe7hJ7HECS&export=view" target="_blank" rel="noopener noreferrer" title="查看照片">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/></svg>
+                            <span>查看照片</span>
+                        </a>
+                    </p>
                 </div>
             </div>
 
@@ -172,7 +294,13 @@
                 <div class="project-content">
                     <h3>高三參加五對五籃球競賽</h3>
                     <p>參加高中最後一次體育競賽</p>
-                    <p>雖然比賽成績並不理想但因為是最後一次印象極為深刻https://drive.google.com/file/d/11JWZ_y_zyXNuPZ_f-6ztgX3kB_0YXUS3/view?usp=drive_link</p>
+                    <p>雖然比賽成績並不理想但因為是最後一次印象極為深刻。</p>
+                    <p>比賽照片：
+                        <a class="link-button" href="https://drive.usercontent.google.com/download?id=11JWZ_y_zyXNuPZ_f-6ztgX3kB_0YXUS3&export=view" target="_blank" rel="noopener noreferrer" title="查看比賽照片">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/></svg>
+                            <span>查看照片</span>
+                        </a>
+                    </p>
                 </div>
             </div>
 
@@ -182,7 +310,13 @@
                 </a>
                 <div class="project-content">
                     <h3>做化學實驗</h3>
-                    <p>第一次使用ph計https://drive.google.com/file/d/1AoC1BmUcD-O8ZsPGVZiPzUDs8---1Gcg/view?usp=drive_link</p>
+                    <p>第一次使用 ph 計。</p>
+                    <p>實驗照片：
+                        <a class="link-button" href="https://drive.usercontent.google.com/download?id=1AoC1BmUcD-O8ZsPGVZiPzUDs8---1Gcg&export=view" target="_blank" rel="noopener noreferrer" title="查看實驗照片">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/></svg>
+                            <span>查看照片</span>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>

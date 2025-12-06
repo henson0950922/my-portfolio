@@ -58,8 +58,31 @@ section, header, footer {
     background-repeat: no-repeat;
     border: 5px solid #ddd;
     display: inline-block;
+    border: none;
+    display: block;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.6);
 }
 
+.avatar.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.avatar-wrapper {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 5px; /* border thickness */
+    background: conic-gradient(from 180deg at 50% 50%, #7dd3fc, #60a5fa, #a78bfa);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-wrapper:hover .avatar {
+    transform: scale(1.05);
+}
 /* 經歷時間軸 (簡單版) */
 .timeline-item {
     border-left: 4px solid #333;
@@ -113,6 +136,36 @@ section, header, footer {
     text-align: left;
 }
 
+/* 按鈕式連結樣式（作品集） */
+.link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #1e88e5;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.link-button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    display: inline-block;
+}
+
+.link-button:hover {
+    background: #1669b2;
+    transform: translateY(-2px);
+}
+
+.link-button:active {
+    transform: translateY(0);
+}
+
 /* 技能區塊樣式：進度條呈現 */
 .skills-container {
     max-width: 800px;
@@ -123,6 +176,35 @@ section, header, footer {
 
 .skill {
     margin-bottom: 16px;
+}
+
+/* 可展開內容樣式 */
+.toggle-details {
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: transparent;
+    color: var(--primary, #1e88e5);
+    border: 1px solid rgba(30,136,229,0.12);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.toggle-details:hover {
+    background: rgba(30,136,229,0.06);
+}
+
+.skill-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.28s ease, padding 0.22s ease;
+    padding: 0 4px;
+    color: var(--muted, #9aa6b2);
+}
+
+.skill-details.open {
+    max-height: 240px; /* enough for a few lines */
+    padding: 8px 4px 0 4px;
 }
 
 .skill-header {
@@ -237,3 +319,221 @@ section, header, footer {
         font-size: 0.95rem;
     }
 }
+
+/* ---------- Dark theme overrides ---------- */
+:root {
+    --bg: #0b1116;
+    --surface: #0f1720;
+    --card: #0b1620;
+    --muted: #9aa6b2;
+    --text: #e6eef6;
+    --primary: #1e88e5;
+    --primary-variant: #1669b2;
+    --accent-gradient: linear-gradient(90deg, #4caf50, #1e88e5);
+    --progress-bg: #12232a;
+}
+
+body {
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+nav {
+    background: var(--surface);
+}
+
+nav a {
+    color: var(--text);
+}
+
+section, header, footer {
+    background: var(--card);
+}
+
+.avatar {
+    border: 4px solid rgba(255,255,255,0.06);
+}
+
+.timeline-item {
+    border-left-color: rgba(255,255,255,0.06);
+}
+
+.date {
+    background: var(--primary);
+}
+
+.project-card {
+    background: #071018;
+    border: 1px solid rgba(255,255,255,0.03);
+}
+
+.project-content h3,
+.project-content p {
+    color: var(--text);
+}
+
+.project-image {
+    background-color: #061018;
+}
+
+.profile-contact a,
+.social-links a {
+    color: var(--primary);
+}
+
+.icon {
+    color: var(--text);
+}
+
+.skill-percent {
+    color: var(--muted);
+}
+
+.progress {
+    background: var(--progress-bg);
+}
+
+.progress-fill {
+    background: var(--accent-gradient);
+}
+
+.link-button {
+    background: var(--primary);
+    color: #fff;
+}
+
+.link-button:hover {
+    background: var(--primary-variant);
+}
+
+footer a {
+    color: var(--primary);
+}
+
+/* slightly reduce shadows for dark theme */
+.project-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+/* ensure SVG icons follow text color when placed inside colored buttons */
+.link-button svg { fill: currentColor; }
+
+/* small-screen tweak for dark theme spacing */
+@media (max-width: 600px) {
+    section, header, footer { padding: 40px 12px; }
+}
+
+/* ---------- Decorative programming-style background ---------- */
+.decor-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0; /* 放在內容後方 */
+    pointer-events: none;
+    opacity: var(--decor-opacity, 0.12);
+    transition: opacity 0.3s ease;
+}
+
+.decor-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 霓虹發光效果與網格動畫 */
+.decor-svg {
+    filter: drop-shadow(0 0 10px rgba(167,139,250,0.12)) drop-shadow(0 0 8px rgba(0,240,255,0.08));
+}
+
+.decor-svg .grid { transform-origin: 50% 50%; }
+.decor-svg .grid path { vector-effect: non-scaling-stroke; }
+.decor-svg .grid { animation: rotateGrid 80s linear infinite; }
+
+.decor-svg .symbol, .decor-svg .snippet { text-shadow: 0 0 8px rgba(167,139,250,0.12); }
+
+.decor-svg .brace { opacity: 0.12; }
+.decor-svg .arrow { opacity: 0.16; }
+
+@keyframes rotateGrid {
+    0% { transform: rotate(0deg) translateZ(0); }
+    50% { transform: rotate(0.4deg) translateZ(0); }
+    100% { transform: rotate(0deg) translateZ(0); }
+}
+
+/* 讓某些元素更有霓虹撐度（輕微放大/淡入） */
+.decor-svg .dots circle { transition: transform 0.9s ease, opacity 0.9s ease; }
+.decor-svg .dots .d1 { animation: bob 6s ease-in-out infinite; }
+.decor-svg .dots .d2 { animation: bob 7s ease-in-out infinite reverse; }
+.decor-svg .dots .d3 { animation: bob 5.5s ease-in-out infinite; }
+
+.decor-svg .line {
+    stroke-linecap: round;
+    transform-origin: 50% 50%;
+    opacity: 0.95;
+}
+
+.decor-svg .snippet {
+    mix-blend-mode: screen;
+    opacity: 0.95;
+}
+
+.decor-svg .dot {
+    opacity: 0.95;
+}
+
+/* 緩慢水平移動製造動感（不同線條速度） */
+.line-1 { animation: moveX 28s linear infinite; }
+.line-2 { animation: moveX 36s linear infinite reverse; }
+.line-3 { animation: moveX 32s linear infinite; }
+.line-4 { animation: moveX 40s linear infinite reverse; }
+.line-5 { animation: moveX 30s linear infinite; }
+
+.snippet.s1 { animation: driftY 18s ease-in-out infinite; }
+.snippet.s2 { animation: driftY 22s ease-in-out infinite reverse; }
+.snippet.s3 { animation: driftY 20s ease-in-out infinite; }
+.snippet.s4 { animation: driftY 26s ease-in-out infinite reverse; }
+.snippet.s5 { animation: driftY 24s ease-in-out infinite; }
+
+.dot.d1 { animation: bob 6s ease-in-out infinite; }
+.dot.d2 { animation: bob 8s ease-in-out infinite reverse; }
+.dot.d3 { animation: bob 7s ease-in-out infinite; }
+
+@keyframes moveX {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-6%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes driftY {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(2%) translateY(-6%); }
+    100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes bob {
+    0% { transform: translateY(0); opacity:0.95; }
+    50% { transform: translateY(-6px); opacity:0.7; }
+    100% { transform: translateY(0); opacity:0.95; }
+}
+
+/* Accessibility: 如果使用者偏好減少動畫，停用動畫 */
+@media (prefers-reduced-motion: reduce) {
+    .decor-svg * { animation: none !important; }
+}
+
+/* 手機裝置上降低裝飾透明度與移除細節以提升可讀性 */
+@media (max-width: 720px) {
+    .decor-bg { opacity: 0.06; }
+    .decor-svg .snippet { display: none; }
+}
+
+/* 在深色主題微調裝飾強度 */
+body {
+    --decor-opacity: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+    body { --decor-opacity: 0.16; }
+}
+
+/* 確保主要內容在背景之上 */
+nav, header, section, footer { position: relative; z-index: 1; }
