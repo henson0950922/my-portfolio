@@ -19,39 +19,134 @@
 
     <header id="about">
         <div class="profile-container">
-            <img src="https://via.placeholder.com/150" alt="個人頭像" class="avatar">
+            <div class="avatar" role="img" aria-label="個人頭像" data-drive-src="https://drive.usercontent.google.com/download?id=1WoYQvydXXujFK0pLObxdW949qakFVXpg&export=view" data-local-src="assets/avatar.jpg"></div>
             <h1>(蕭博元)</h1>
             <p>前端開發者 | 學生 | 熱愛學習新技術</p>
+            <div class="profile-contact">
+                <a href="mailto:henson0950922@gmail.com">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    henson0950922@gmail.com
+                </a>
+                <a href="https://www.instagram.com/xxiao_09.22?igsh=NGJkOXJjNGM5NGNy&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 3a1 1 0 110 2 1 1 0 010-2zM12 7.5A4.5 4.5 0 1012 16.5 4.5 4.5 0 0012 7.5zm0 2a2.5 2.5 0 11.001 5.001A2.5 2.5 0 0112 9.5z"/></svg>
+                    Instagram
+                </a>
+                <a href="https://github.com/henson0950922/my-portfolio/branches" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.18.08 1.8 1.21 1.8 1.21 1.04 1.78 2.72 1.27 3.38.97.11-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.98.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.6.24 2.78.12 3.07.74.81 1.19 1.84 1.19 3.1 0 4.43-2.71 5.4-5.29 5.68.42.36.8 1.07.8 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+                    GitHub
+                </a>
+            </div>
         </div>
     </header>
 
     <section id="skills">
         <h2>技能展示</h2>
         <div class="skills-container">
-            <div class="skill-item">HTML/CSS (90%)</div>
-            <div class="skill-item">JavaScript (80%)</div>
-            <div class="skill-item">Git/GitHub (75%)</div>
-            <div class="skill-item">溝通協調 (85%)</div>
+            <div class="skill" data-percent="75">
+                <div class="skill-header">
+                    <span class="skill-name">社交能力</span>
+                    <span class="skill-percent">75%</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="skill" data-percent="70">
+                <div class="skill-header">
+                    <span class="skill-name">語言能力</span>
+                    <span class="skill-percent">70%</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="skill" data-percent="90">
+                <div class="skill-header">
+                    <span class="skill-name">食量</span>
+                    <span class="skill-percent">90%</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="skill" data-percent="95">
+                <div class="skill-header">
+                    <span class="skill-name">睡覺時長</span>
+                    <span class="skill-percent">95%</span>
+                </div>
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="95">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <script>
+        // 在 DOM 載入後，讀取每個 .skill 的 data-percent，並設定 .progress-fill 的寬度以觸發 CSS transition
+        document.addEventListener('DOMContentLoaded', function () {
+            const skills = document.querySelectorAll('.skill');
+            skills.forEach(skill => {
+                const percent = skill.getAttribute('data-percent') || skill.querySelector('.skill-percent')?.textContent.replace('%','').trim() || '0';
+                const fill = skill.querySelector('.progress-fill');
+                // 小延遲讓 transition 有機會從 0 -> target 動畫
+                requestAnimationFrame(() => {
+                    fill.style.width = percent + '%';
+                });
+            });
+        });
+        
+        // 嘗試載入 avatar 圖片：優先使用 Google Drive，失敗則使用本地 assets/avatar.jpg
+        document.addEventListener('DOMContentLoaded', function () {
+            const avatar = document.querySelector('.avatar');
+            if (!avatar) return;
+            const driveSrc = avatar.getAttribute('data-drive-src');
+            const localSrc = avatar.getAttribute('data-local-src');
+
+            function setBackground(url) {
+                avatar.style.backgroundImage = `url('${url}')`;
+            }
+
+            if (driveSrc) {
+                const img = new Image();
+                img.onload = function () {
+                    setBackground(driveSrc);
+                };
+                img.onerror = function () {
+                    if (localSrc) {
+                        const img2 = new Image();
+                        img2.onload = function () { setBackground(localSrc); };
+                        img2.onerror = function () { /* leave placeholder */ };
+                        img2.src = localSrc;
+                    }
+                };
+                // 加上 timestamp 以避免瀏覽器快取問題（必要時）
+                img.src = driveSrc + (driveSrc.indexOf('?') === -1 ? '?' : '&') + 't=' + Date.now();
+            } else if (localSrc) {
+                setBackground(localSrc);
+            }
+        });
+    </script>
 
     <section id="experience">
         <h2>經歷時間軸</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <span class="date">2023 - 至今</span>
-                <h3>輔仁大學 - 資訊相關科系</h3>
-                <p>學習程式設計、網頁開發與資料庫管理。</p>
+                <span class="date">2019 - 2022</span>
+                <h3>國中時期</h3>
+                <p>上課都在睡覺，並常常跟老師唱反調。</p>
             </div>
             <div class="timeline-item">
-                <span class="date">2022 - 2023</span>
-                <h3>校園程式設計競賽 - 佳作</h3>
-                <p>與隊員合作開發 Python 數據分析專案，負責前端視覺化。</p>
+                <span class="date">2022 - 2025</span>
+                <h3>高中時期</h3>
+                <p>開始注重作業與運動，參加很多運動比賽並逐漸認真上課。</p>
             </div>
             <div class="timeline-item">
-                <span class="date">2020 - 2022</span>
-                <h3>高中電腦社 - 社長</h3>
-                <p>負責籌辦社團課程與校內電競比賽。</p>
+                <span class="date">2025 - 現在</span>
+                <h3>進入大學</h3>
+                <p>把握社交機會認識更多朋友，並開始思考未來要做甚麼。</p>
             </div>
         </div>
     </section>
@@ -71,19 +166,18 @@
             </div>
             <div class="project-card">
                 <h3>攝影作品網站</h3>
-                <p>角色：前端切版</p>
-                <p>幫朋友製作的響應式攝影集網站。</p>
+                <p>角色：前端切版</p> 
             </div>
         </div>
     </section>
 
     <footer id="contact">
         <h2>聯絡方式</h2>
-        <p>Email: <a href="mailto:example@email.com">example@email.com</a></p>
+        <p>Email: <a href="mailto:henson0950922@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> henson0950922@gmail.com</a></p>
         <div class="social-links">
-            <a href="#">GitHub</a>
-            <a href="#">Instagram</a>
-            <a href="#">Threads</a>
+            <a href="https://github.com/henson0950922/my-portfolio/branches" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.18.08 1.8 1.21 1.8 1.21 1.04 1.78 2.72 1.27 3.38.97.11-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.98.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.6.24 2.78.12 3.07.74.81 1.19 1.84 1.19 3.1 0 4.43-2.71 5.4-5.29 5.68.42.36.8 1.07.8 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg> GitHub</a>
+            <a href="https://www.instagram.com/xxiao_09.22?igsh=NGJkOXJjNGM5NGNy&utm_source=qr" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 3a1 1 0 110 2 1 1 0 010-2zM12 7.5A4.5 4.5 0 1012 16.5 4.5 4.5 0 0012 7.5zm0 2a2.5 2.5 0 11.001 5.001A2.5 2.5 0 0112 9.5z"/></svg> Instagram</a>
+            <a href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg> Threads</a>
         </div>
         <p>&copy; 2025 My Portfolio Designed by xiao</p>
     </footer>

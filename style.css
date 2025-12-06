@@ -53,8 +53,11 @@ section, header, footer {
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border: 5px solid #ddd;
+    display: inline-block;
 }
 
 /* 經歷時間軸 (簡單版) */
@@ -96,13 +99,56 @@ section, header, footer {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* 技能區塊樣式 (預設簡易版) */
-.skill-item {
-    background: #e0e0e0;
-    display: inline-block;
+/* 技能區塊樣式：進度條呈現 */
+.skills-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
     padding: 10px 20px;
-    margin: 5px;
-    border-radius: 20px;
+}
+
+.skill {
+    margin-bottom: 16px;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.skill-name {
+    font-size: 1rem;
+}
+
+.skill-percent {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: #e6e6e6;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #4caf50, #1e88e5);
+    border-radius: 999px;
+    transition: width 1s ease-in-out;
+}
+
+/* 小螢幕調整 */
+@media (max-width: 600px) {
+    .skill-header {
+        font-size: 0.95rem;
+    }
 }
 
 /* 響應式設計：手機版 */
@@ -113,5 +159,67 @@ section, header, footer {
     
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* 主頁聯絡資訊（header） */
+.profile-contact {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.profile-contact a {
+    color: #1e88e5;
+    text-decoration: none;
+    background: transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.profile-contact a:hover {
+    background: rgba(30,136,229,0.08);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.social-links a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* 圖示共用樣式 */
+.icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: -2px;
+    margin-right: 8px;
+    fill: currentColor;
+    display: inline-block;
+}
+
+/* 讓 header/footer 的連結在小螢幕也好排列 */
+@media (max-width: 420px) {
+    .profile-contact {
+        gap: 8px;
+        padding: 0 8px;
+    }
+
+    .profile-contact a {
+        padding: 6px 8px;
+        font-size: 0.95rem;
     }
 }
